@@ -71,9 +71,9 @@ GestorCentralHeroes -down-> "*\n-heroesRegistrados" Heroe
 ' Separación de columnas (Héroes a la izquierda, Creadores a la derecha)
 Heroe -[hidden]right- CreadorHeroe
 
-' Herencia de Héroes (Columna izquierda: MagoHeroe primero para que su línea suba por el borde exterior izquierdo)
-Heroe <|-- MagoHeroe
-Heroe <|-- GuerreroHeroe
+' Herencia de Héroes (Columna izquierda)
+GuerreroHeroe -up-|> Heroe
+MagoHeroe -left-|> Heroe
 GuerreroHeroe -[hidden]down- MagoHeroe
 
 ' Herencia de Creadores (Columna derecha)
