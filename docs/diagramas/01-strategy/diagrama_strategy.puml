@@ -1,6 +1,7 @@
 @startuml diagrama_strategy
 skinparam classAttributeIconSize 0
 skinparam monochrome false
+skinparam linetype ortho
 skinparam class {
     BackgroundColor White
     ArrowColor #2C3E50
@@ -9,6 +10,7 @@ skinparam class {
 
 title Patrón Strategy - Gestión de Transacciones Bancarias (Punto 1)
 
+' Contexto (Izquierda arriba)
 class GestorTransacciones <<Context>> {
     - monto: BigDecimal
     + GestorTransacciones()
@@ -19,22 +21,7 @@ class GestorTransacciones <<Context>> {
     + confirmarTransaccion(): void
 }
 
-interface TransaccionStrategy <<Strategy>> {
-    + {abstract} ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
-}
-
-class DepositoStrategy <<ConcreteStrategy>> {
-    + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
-}
-
-class ExtraccionStrategy <<ConcreteStrategy>> {
-    + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
-}
-
-class TransferenciaStrategy <<ConcreteStrategy>> {
-    + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
-}
-
+' Entidad de Dominio (Izquierda abajo)
 class CuentaBancaria {
     - cbu: String
     - titular: String
@@ -47,21 +34,38 @@ class CuentaBancaria {
     + debitar(monto: BigDecimal): void
 }
 
-' Relación Contexto -> Estrategia (Agregación / Asociación dirigida con rol y multiplicidad)
-GestorTransacciones o--> "1\n-estrategia" TransaccionStrategy
+' Interfaz Strategy (Derecha arriba)
+interface TransaccionStrategy <<Strategy>> {
+    + {abstract} ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
+}
 
-' Relaciones de Realización / Implementación (la flecha hueca discontinua ya significa realización)
+' Estrategias Concretas (Derecha abajo)
+class DepositoStrategy <<ConcreteStrategy>> {
+    + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
+}
+
+class ExtraccionStrategy <<ConcreteStrategy>> {
+    + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
+}
+
+class TransferenciaStrategy <<ConcreteStrategy>> {
+    + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
+}
+
+' Conexión Contexto -> Strategy (Horizontal como en la filmina de la cátedra)
+GestorTransacciones -right-> "1\n-estrategia" TransaccionStrategy
+
+' Conexión Contexto -> Cuentas de Dominio (Hacia abajo en la columna izquierda)
+GestorTransacciones -down-> "1\n-cuentaOrigen" CuentaBancaria
+GestorTransacciones -down-> "0..1\n-cuentaDestino" CuentaBancaria
+
+' Implementación de las estrategias concretas
 TransaccionStrategy <|.. DepositoStrategy
 TransaccionStrategy <|.. ExtraccionStrategy
 TransaccionStrategy <|.. TransferenciaStrategy
 
-' Asociaciones del contexto con las cuentas de dominio
-GestorTransacciones --> "1\n-cuentaOrigen" CuentaBancaria
-GestorTransacciones --> "0..1\n-cuentaDestino" CuentaBancaria
-
-' Dependencias de uso de las estrategias con el dominio (flecha discontinua simple)
-DepositoStrategy ..> CuentaBancaria
-ExtraccionStrategy ..> CuentaBancaria
-TransferenciaStrategy ..> CuentaBancaria
+' Alineación horizontal de las estrategias concretas
+DepositoStrategy -[hidden]right- ExtraccionStrategy
+ExtraccionStrategy -[hidden]right- TransferenciaStrategy
 
 @enduml

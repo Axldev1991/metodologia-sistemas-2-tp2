@@ -33,6 +33,18 @@ classDiagram
         +confirmarTransaccion(): void
     }
 
+    class CuentaBancaria {
+        -cbu: String
+        -titular: String
+        -saldo: BigDecimal
+        +CuentaBancaria(cbu: String, titular: String, saldoInicial: BigDecimal)
+        +getCbu(): String
+        +getTitular(): String
+        +getSaldo(): BigDecimal
+        +acreditar(monto: BigDecimal): void
+        +debitar(monto: BigDecimal): void
+    }
+
     class TransaccionStrategy {
         <<interface>>
         <<Strategy>>
@@ -54,27 +66,12 @@ classDiagram
         +ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria) void
     }
 
-    class CuentaBancaria {
-        -cbu: String
-        -titular: String
-        -saldo: BigDecimal
-        +CuentaBancaria(cbu: String, titular: String, saldoInicial: BigDecimal)
-        +getCbu(): String
-        +getTitular(): String
-        +getSaldo(): BigDecimal
-        +acreditar(monto: BigDecimal): void
-        +debitar(monto: BigDecimal): void
-    }
-
-    GestorTransacciones o--> "1\n-estrategia" TransaccionStrategy
+    GestorTransacciones -right-> "1\n-estrategia" TransaccionStrategy
+    GestorTransacciones -down-> "1\n-cuentaOrigen" CuentaBancaria
+    GestorTransacciones -down-> "0..1\n-cuentaDestino" CuentaBancaria
     TransaccionStrategy <|.. DepositoStrategy
     TransaccionStrategy <|.. ExtraccionStrategy
     TransaccionStrategy <|.. TransferenciaStrategy
-    GestorTransacciones --> "1\n-cuentaOrigen" CuentaBancaria
-    GestorTransacciones --> "0..1\n-cuentaDestino" CuentaBancaria
-    DepositoStrategy ..> CuentaBancaria
-    ExtraccionStrategy ..> CuentaBancaria
-    TransferenciaStrategy ..> CuentaBancaria
 ```
 
 ---
