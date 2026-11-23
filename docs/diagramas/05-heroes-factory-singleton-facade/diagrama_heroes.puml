@@ -77,8 +77,8 @@ Heroe <|-- GuerreroHeroe
 Heroe <|-- MagoHeroe
 
 ' Dependencia de Creación del Factory Method
-CreadorGuerrero ..> GuerreroHeroe : crea
-CreadorMago ..> MagoHeroe : crea
+CreadorGuerrero ..> GuerreroHeroe
+CreadorMago ..> MagoHeroe
 
 ' Alineaciones estéticas
 CreadorGuerrero -[hidden]right- CreadorMago

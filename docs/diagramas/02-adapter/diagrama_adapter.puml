@@ -65,7 +65,7 @@ class BilleteraVirtual <<Adaptee>> {
 
 ' Relaciones
 Reserva --> "1\n-huesped" Huesped
-Reserva --> "1" MedioPago : usa / pagarCon
+Reserva ..> MedioPago
 
 MedioPago <|.. TarjetaCreditoAdapter
 MedioPago <|.. BilleteraVirtualAdapter
