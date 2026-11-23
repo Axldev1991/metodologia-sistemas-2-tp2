@@ -1,0 +1,57 @@
+@startuml diagrama_refactoring
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam linetype ortho
+skinparam class {
+    BackgroundColor White
+    ArrowColor #2C3E50
+    BorderColor #2C3E50
+}
+
+title Solución Refactorizada: Replace Conditional with Polymorphism (Refactoring)
+
+class Videojuego {
+    - personajes: List<Personaje>
+    + Videojuego()
+    + agregarPersonaje(p: Personaje): void
+    + personajeConMasDaño(): Personaje
+    + imprimirInfo(p: Personaje): String
+}
+
+class Personaje {
+    - nombre: String
+    - daño: double
+    + Personaje(nombre: String, daño: double, tipoHabilidad: Habilidad)
+    + getNombre(): String
+    + getDaño(): double
+    + getTipoHabilidad(): Habilidad
+    + calcularDañoEfectivo(): double
+}
+
+interface Habilidad <<interface>> {
+    + {abstract} calcularDaño(dañoBase: double): double
+    + {abstract} getDescripcionTipo(): String
+    + {abstract} getEfectoFuerza(): String
+}
+
+class HabilidadMagica {
+    + calcularDaño(dañoBase: double): double
+    + getDescripcionTipo(): String
+    + getEfectoFuerza(): String
+}
+
+class HabilidadCuerpoACuerpo {
+    + calcularDaño(dañoBase: double): double
+    + getDescripcionTipo(): String
+    + getEfectoFuerza(): String
+}
+
+Videojuego o--> "*\n-personajes" Personaje
+Personaje --> "1\n-tipoHabilidad" Habilidad
+
+Habilidad <|.. HabilidadMagica
+Habilidad <|.. HabilidadCuerpoACuerpo
+
+HabilidadMagica -[hidden]right- HabilidadCuerpoACuerpo
+
+@enduml
