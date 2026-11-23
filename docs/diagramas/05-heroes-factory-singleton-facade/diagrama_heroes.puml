@@ -1,7 +1,7 @@
 @startuml diagrama_heroes
 skinparam classAttributeIconSize 0
 skinparam monochrome false
-' skinparam linetype ortho
+skinparam linetype ortho
 skinparam class {
     BackgroundColor White
     ArrowColor #2C3E50
@@ -68,21 +68,21 @@ GestorCentralHeroes -down-> "1\n-creadorGuerrero" CreadorHeroe
 GestorCentralHeroes -down-> "1\n-creadorMago" CreadorHeroe
 GestorCentralHeroes -down-> "*\n-heroesRegistrados" Heroe
 
-' Separación de columnas
-CreadorHeroe -[hidden]right- Heroe
+' Separación de columnas (Héroes a la izquierda, Creadores a la derecha)
+Heroe -[hidden]right- CreadorHeroe
 
-' Herencia de Creadores (Columna izquierda)
-CreadorHeroe <|-- CreadorGuerrero
-CreadorHeroe <|-- CreadorMago
-CreadorGuerrero -[hidden]down- CreadorMago
-
-' Herencia de Productos (Columna derecha)
+' Herencia de Héroes (Columna izquierda)
 Heroe <|-- GuerreroHeroe
 Heroe <|-- MagoHeroe
 GuerreroHeroe -[hidden]down- MagoHeroe
 
-' Dependencias de Creación horizontales directas
-CreadorGuerrero ..> GuerreroHeroe
-CreadorMago ..> MagoHeroe
+' Herencia de Creadores (Columna derecha)
+CreadorHeroe <|-- CreadorGuerrero
+CreadorHeroe <|-- CreadorMago
+CreadorGuerrero -[hidden]down- CreadorMago
+
+' Dependencias de Creación (desde Creadores a la izquierda hacia Héroes)
+CreadorGuerrero -left..> GuerreroHeroe
+CreadorMago -left..> MagoHeroe
 
 @enduml
