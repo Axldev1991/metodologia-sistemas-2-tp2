@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grupo5_C141TP2 - Metodología de Sistemas II</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --code-bg: #f1f5f9;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    }
+    .cover {
+      text-align: center;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .cover h1 { font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 0.5rem; }
+    .cover h2 { font-size: 1.3rem; font-weight: 500; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      text-align: left;
+      background: var(--bg);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+    .info-grid p { font-size: 0.95rem; }
+    .info-grid strong { color: var(--text); }
+    h2.section-title {
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+      border-left: 4px solid var(--primary);
+      padding-left: 0.8rem;
+      margin: 2rem 0 1rem 0;
+    }
+    h3.sub-title { font-size: 1.15rem; color: var(--text); margin: 1.5rem 0 0.5rem 0; }
+    p, ul { margin-bottom: 1rem; font-size: 0.95rem; }
+    ul { padding-left: 1.5rem; }
+    li { margin-bottom: 0.4rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.75rem;
+      text-align: left;
+    }
+    th { background: var(--bg); font-weight: 600; color: var(--primary-dark); }
+    code {
+      font-family: 'Fira Code', monospace;
+      background: var(--code-bg);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: #e0f2fe;
+      color: var(--primary-dark);
+    }
+    .repo-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      font-weight: 500;
+    }
+    .repo-box a { color: #15803d; text-decoration: none; word-break: break-all; }
+    @media print {
+      body { background: white; padding: 0; }
+      .container { box-shadow: none; padding: 1.5cm; max-width: 100%; }
+      .page-break { page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="cover">
+      <h1>UNIVERSIDAD TECNOLÓGICA NACIONAL</h1>
+      <h2>Facultad Regional Avellaneda — Metodología de Sistemas II</h2>
+      <h3 style="margin-top: 1rem; font-size: 1.4rem;">Trabajo Práctico Integrador — Segunda Parte</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">Evaluación de Patrones de Diseño, Refactoring y Domain-Driven Design (DDD)</p>
+
+      <div class="info-grid">
+        <div>
+          <p><strong>Curso / División:</strong> C141</p>
+          <p><strong>Grupo:</strong> 5</p>
+          <p><strong>Docente:</strong> Lic. Edith Rocío Castillo Yauri</p>
+          <p><strong>Fecha de Entrega:</strong> Jueves 26/11/2026</p>
+        </div>
+        <div>
+          <p><strong>Integrantes del Equipo:</strong></p>
+          <p>• Castellano, Axel (@Axldev1991)</p>
+          <p>• Fernandez, Saulo (@serenomoon)</p>
+          <p>• Rumie, Nicolás (@nicolasrumie)</p>
+          <p>• Espósito, Franco (@francoesposito)</p>
+          <p>• Cuenca, Francisco</p>
+          <p>• Salaberry, Thiago</p>
+        </div>
+      </div>
+
+      <div class="repo-box">
+        Repositorio de Código Fuente en GitHub: <br>
+        <a href="https://github.com/Axldev1991/metodologia-sistemas-2-tp2">https://github.com/Axldev1991/metodologia-sistemas-2-tp2</a>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 1: PATRONES DE DISEÑO -->
+    <h2 class="section-title">Parte 1: Patrones de Diseño (GoF)</h2>
+
+    <h3 class="sub-title">1. Sistema de Transacciones Bancarias <span class="badge">Patrón Strategy</span></h3>
+    <p><strong>Justificación Técnica:</strong> Se encapsulan los algoritmos de operación bancaria (<code>DepositoStrategy</code>, <code>ExtraccionStrategy</code>, <code>TransferenciaStrategy</code>) bajo la interfaz polimórfica <code>TransaccionStrategy</code>. El contexto <code>GestorTransacciones</code> mantiene una referencia conmutable por composición, permitiendo al usuario cambiar dinámicamente de operación en tiempo de ejecución antes de confirmar mediante <code>setEstrategia(...)</code>.</p>
+    <p><strong>Ubicación de Fuentes:</strong> Diagrama PlantUML en <code>docs/diagramas/01-strategy/diagrama_strategy.puml</code>. Código en <code>src/main/java/.../strategy/</code> con tests JUnit 5 en <code>GestorTransaccionesTest.java</code>.</p>
+
+    <h3 class="sub-title">2. Sistema de Pagos de Hotel <span class="badge">Patrón Adapter</span></h3>
+    <p><strong>Justificación Técnica:</strong> La entidad <code>Reserva</code> requiere procesar cobros de forma genérica a través de la interfaz <code>MedioPago</code>. Dado que las clases existentes <code>TarjetaCredito</code> y <code>BilleteraVirtual</code> no pueden modificarse y poseen protocolos incompatibles, se crearon los adaptadores <code>TarjetaCreditoAdapter</code> y <code>BilleteraVirtualAdapter</code> que traducen las firmas sin alterar el código legado.</p>
+    <p><strong>Ubicación de Fuentes:</strong> Diagrama PlantUML en <code>docs/diagramas/02-adapter/diagrama_adapter.puml</code>. Código en <code>src/main/java/.../adapter/</code> y tests en <code>ReservaPagoAdapterTest.java</code>.</p>
+
+    <h3 class="sub-title">3. Sistema de Combate en Videojuego <span class="badge">Patrón Template Method</span></h3>
+    <p><strong>Justificación Técnica:</strong> Se definió el esqueleto del combate en el método plantilla <code>public final void pelear()</code> de la superclase abstracta <code>Personaje</code>. Las subclases <code>Guerrero</code> y <code>Mago</code> rellenan los pasos primitivos (<code>prepararEquipamiento</code>, <code>posicionarse</code>, <code>ejecutarAtaque</code>). Se incorporaron las operaciones de enganche (<em>hooks</em>) <code>debeCelebrar()</code> y <code>celebrarVictoria()</code>.</p>
+    <div style="background: var(--bg); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+      <p><strong>Respuestas Teóricas Obligatorias (Consigna 3):</strong></p>
+      <ul>
+        <li><strong>¿Dónde se define el esqueleto?</strong> En la clase abstracta <code>Personaje</code>, en el método plantilla <code>final void pelear()</code>.</li>
+        <li><strong>¿Se puede redefinir el esqueleto?</strong> No, está declarado como <code>final</code> para preservar la invariante del algoritmo.</li>
+        <li><strong>¿Qué es lo que se puede redefinir?</strong> Las operaciones primitivas abstractas y los métodos de enganche (<em>hooks</em>).</li>
+        <li><strong>¿Qué es Inversión de Control (IoC)?</strong> Es el Principio de Hollywood (<em>"No nos llames a nosotros, nosotros te llamaremos a ti"</em>): la superclase gobierna el flujo temporal e invoca a las subclases cuando corresponde.</li>
+        <li><strong>¿Para qué sirven los hooks?</strong> Proveen puntos de extensión opcionales sin obligar a todas las subclases a implementarlos. Se agregó <code>debeCelebrar()</code> y <code>celebrarVictoria()</code>.</li>
+        <li><strong>¿Por qué aplica IoC?</strong> La superclase tiene el control exclusivo del flujo de ejecución; las subclases solo rellenan detalles individuales.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub-title">4. Monitoreo Ambiental en Edificio Inteligente <span class="badge">Patrón Observer</span></h3>
+    <p><strong>Justificación Técnica:</strong> Relación uno a muchos desacoplada entre el sujeto observable <code>Sensor</code> y los observadores <code>ObservadorSensor</code>. Permite suscribir y desuscribir dinámicamente en tiempo real los paneles gráficos (<code>PanelPrincipal</code>, <code>PanelAlertas</code>, <code>RegistroConsola</code>) mediante <code>suscribir()</code> y <code>desuscribir()</code> sin modificar las clases de sensores existentes.</p>
+
+    <h3 class="sub-title">5. Reclutamiento de Héroes de Fantasía <span class="badge">Factory Method + Singleton + Facade</span></h3>
+    <p><strong>Justificación de Requisitos:</strong></p>
+    <ul>
+      <li><strong>Requisito 1 (Creación desacoplada y extensible):</strong> <em>Factory Method</em> mediante la jerarquía <code>CreadorHeroe</code> (<code>CreadorGuerrero</code>, <code>CreadorMago</code>). Permite añadir nuevas clases de héroes a futuro sin modificar el código cliente.</li>
+      <li><strong>Requisito 2 (Instancia única compartida):</strong> <em>Singleton</em> en <code>GestorCentralHeroes</code> con constructor privado y método estático <code>getInstancia()</code> thread-safe.</li>
+      <li><strong>Requisito 3 (Interfaz simple para gremios):</strong> <em>Facade</em> en <code>GestorCentralHeroes</code> con operaciones de alto nivel (<code>reclutarGuerrero</code>, <code>reclutarMago</code>, <code>consultarMejorGuerrero</code>, <code>generarReporteBatalla</code>) ocultando la complejidad del subsistema interno.</li>
+      <li><strong>Requisito 4 (Bajo acoplamiento):</strong> Los gremios solo conocen la fachada; la creación, el almacenamiento y los cálculos de ranking quedan encapsulados con alta cohesión.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <!-- SECCIÓN 2: REFACTORING -->
+    <h2 class="section-title">Parte 2: Refactoring del Código de Videojuego</h2>
+
+    <p><strong>1. Mal Olor Detectado (Clasificación Martin Fowler):</strong></p>
+    <ul>
+      <li><code>Switch Statements / Conditional Complexity on Type</code> (Sentencias condicionales por tipo): En el método <code>imprimirInfo</code> al consultar <code>p.getTipoHabilidad().getClass() == HabilidadMagica.class</code>.</li>
+      <li><code>Feature Envy</code> (Envidia de Atributos): La clase <code>Videojuego</code> inspecciona datos internos de la habilidad para formatear mensajes que le pertenecen a la habilidad.</li>
+    </ul>
+
+    <p><strong>2. Problema para la Mantenibilidad y Escalabilidad:</strong></p>
+    <ul>
+      <li>Viola el principio <strong>Open/Closed (OCP)</strong>: cada nueva habilidad obliga a modificar los condicionales en <code>Videojuego</code>.</li>
+      <li>Genera duplicación y dispersión de lógica de negocio (<em>Repeated Switches</em>), aumentando el riesgo de errores en tiempo de ejecución.</li>
+    </ul>
+
+    <p><strong>3. Refactoring Recomendado:</strong></p>
+    <ul>
+      <li><strong>Replace Conditional with Polymorphism:</strong> Creación de la interfaz <code>Habilidad</code> con métodos <code>calcularDaño(base)</code>, <code>getDescripcionTipo()</code> y <code>getEfectoFuerza()</code>, delegando en <code>HabilidadMagica</code> y <code>HabilidadCuerpoACuerpo</code>.</li>
+      <li><strong>Tell, Don't Ask:</strong> Encapsulación de <code>p.calcularDañoEfectivo()</code> en <code>Personaje</code>.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <!-- SECCIÓN 3: DOMAIN-DRIVEN DESIGN -->
+    <h2 class="section-title">Parte 3: Domain-Driven Design (DDD)</h2>
+
+    <h3 class="sub-title">1. Lenguaje Ubicuo (Ubiquitous Language)</h3>
+    <p>Es el vocabulario riguroso, compartido y sin ambigüedades construido de forma conjunta entre desarrolladores y expertos del negocio. Elimina la traducción mental entre la especificación y el código: los mismos términos del negocio nombran clases, métodos y excepciones en el software, asegurando que el modelo refleje la realidad del problema.</p>
+
+    <h3 class="sub-title">2. Entidad vs. Value Object</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Criterio</th>
+          <th>Entidad (Entity)</th>
+          <th>Objeto de Valor (Value Object)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Identidad</strong></td>
+          <td>Posee identidad única y continua a lo largo del tiempo (ID / UUID).</td>
+          <td>Carece de identidad conceptual; se define solo por sus atributos.</td>
+        </tr>
+        <tr>
+          <td><strong>Igualdad</strong></td>
+          <td>Dos entidades son iguales si comparten el mismo identificador.</td>
+          <td>Son iguales si todos sus atributos son idénticos por valor.</td>
+        </tr>
+        <tr>
+          <td><strong>Mutabilidad</strong></td>
+          <td>Mutable a lo largo de su ciclo de vida en el dominio.</td>
+          <td>Completamente inmutable. Si cambia, se reemplaza la instancia.</td>
+        </tr>
+        <tr>
+          <td><strong>Ejemplo</strong></td>
+          <td><code>Pedido</code> (ID único, cambia de estado pero es el mismo pedido).</td>
+          <td><code>Direccion</code> o <code>Dinero</code> (100 USD es indistinguible de otro).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub-title">3. Bounded Context (Contexto Delimitado)</h3>
+    <p>Es la frontera explícita dentro de la cual un modelo de dominio y su lenguaje ubicuo son semánticamente consistentes. En sistemas empresariales grandes, evita la sobrecarga de términos polisérmicos (un <code>Producto</code> en <em>Ventas</em> tiene precio y fotos; en <em>Logística</em> tiene peso y estantería; en <em>Facturación</em> tiene código arancelario). Permite que equipos y microservicios evolucionen de forma autónoma sin acoplamiento destructivo.</p>
+
+    <h3 class="sub-title">4. Rol de los Diagramas UML en DDD</h3>
+    <p>UML actúa como un lenguaje visual neutral y puente de comunicación entre técnicos y negocio:</p>
+    <ul>
+      <li><strong>Casos de Uso:</strong> Validan el alcance e interacción de los actores del negocio.</li>
+      <li><strong>Diagramas de Clases de Dominio:</strong> Mapean Entidades, Value Objects y Agregados reflejando visualmente el Lenguaje Ubicuo.</li>
+      <li><strong>Diagramas de Secuencia:</strong> Visualizan la colaboración temporal de los objetos para resolver reglas de negocio.</li>
+    </ul>
+    <p>Permiten que los expertos de negocio validen y corrijan el modelo conceptual antes de escribir código, manteniendo el foco en el valor del negocio en lugar de tablas o infraestructura.</p>
+  </div>
+</body>
+</html>
