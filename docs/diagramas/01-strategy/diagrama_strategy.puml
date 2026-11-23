@@ -10,10 +10,7 @@ skinparam class {
 title Patrón Strategy - Gestión de Transacciones Bancarias (Punto 1)
 
 class GestorTransacciones <<Context>> {
-    - estrategia: TransaccionStrategy
     - monto: BigDecimal
-    - cuentaOrigen: CuentaBancaria
-    - cuentaDestino: CuentaBancaria
     + GestorTransacciones()
     + GestorTransacciones(estrategiaInicial: TransaccionStrategy)
     + setEstrategia(estrategia: TransaccionStrategy): void
@@ -50,14 +47,21 @@ class CuentaBancaria {
     + debitar(monto: BigDecimal): void
 }
 
-GestorTransacciones o-> TransaccionStrategy : delega / conmuta
-TransaccionStrategy <|.. DepositoStrategy : implementa
-TransaccionStrategy <|.. ExtraccionStrategy : implementa
-TransaccionStrategy <|.. TransferenciaStrategy : implementa
+' Relación Contexto -> Estrategia (Agregación / Asociación dirigida con rol y multiplicidad)
+GestorTransacciones o--> "1\n-estrategia" TransaccionStrategy
 
-GestorTransacciones --> CuentaBancaria : opera sobre
-DepositoStrategy ..> CuentaBancaria : acredita
-ExtraccionStrategy ..> CuentaBancaria : debita
-TransferenciaStrategy ..> CuentaBancaria : debita y acredita
+' Relaciones de Realización / Implementación (la flecha hueca discontinua ya significa realización)
+TransaccionStrategy <|.. DepositoStrategy
+TransaccionStrategy <|.. ExtraccionStrategy
+TransaccionStrategy <|.. TransferenciaStrategy
+
+' Asociaciones del contexto con las cuentas de dominio
+GestorTransacciones --> "1\n-cuentaOrigen" CuentaBancaria
+GestorTransacciones --> "0..1\n-cuentaDestino" CuentaBancaria
+
+' Dependencias de uso de las estrategias con el dominio (flecha discontinua simple)
+DepositoStrategy ..> CuentaBancaria
+ExtraccionStrategy ..> CuentaBancaria
+TransferenciaStrategy ..> CuentaBancaria
 
 @enduml

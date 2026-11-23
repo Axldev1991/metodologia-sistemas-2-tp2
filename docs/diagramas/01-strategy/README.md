@@ -11,12 +11,12 @@ El requisito determinante es:
 
 * **Por qué Strategy:**
   1. **Familia de algoritmos intercambiables:** Encapsula cada operación en su propia clase concreta que implementa una interfaz común (`TransaccionStrategy`).
-  2. **Intercambio en tiempo de ejecución:** El objeto contexto (`GestorTransacciones`) mantiene una referencia por composición a la estrategia activa. Gracias al polimorfismo y a un método setter (`setEstrategia`), el cliente puede conmutar la operación elegida dinámicamente sin acoplarse a condicionales rígidos (`if / switch`).
+  2. **Intercambio en tiempo de ejecución:** El objeto contexto (`GestorTransacciones`) mantiene una referencia por composición/agregación a la estrategia activa. Gracias al polimorfismo y a un método setter (`setEstrategia`), el cliente puede conmutar la operación elegida dinámicamente sin acoplarse a condicionales rígidos (`if / switch`).
   3. **Principio Open/Closed (OCP):** Permite incorporar nuevas transacciones en el futuro (ej. pago de servicios, plazo fijo) creando una nueva clase concreta sin modificar el gestor existente ni las otras operaciones.
 
 ---
 
-## 3. Diagrama de Clases UML
+## 3. Diagrama de Clases UML Formal
 
 ```mermaid
 classDiagram
@@ -24,10 +24,7 @@ classDiagram
 
     class GestorTransacciones {
         <<Context>>
-        -estrategia: TransaccionStrategy
         -monto: BigDecimal
-        -cuentaOrigen: CuentaBancaria
-        -cuentaDestino: CuentaBancaria
         +GestorTransacciones()
         +GestorTransacciones(estrategiaInicial: TransaccionStrategy)
         +setEstrategia(estrategia: TransaccionStrategy): void
@@ -69,14 +66,15 @@ classDiagram
         +debitar(monto: BigDecimal): void
     }
 
-    GestorTransacciones o-- TransaccionStrategy : tiene / delega a
-    TransaccionStrategy <|.. DepositoStrategy : implementa
-    TransaccionStrategy <|.. ExtraccionStrategy : implementa
-    TransaccionStrategy <|.. TransferenciaStrategy : implementa
-    GestorTransacciones --> CuentaBancaria : opera sobre
-    DepositoStrategy ..> CuentaBancaria : acredita
-    ExtraccionStrategy ..> CuentaBancaria : debita
-    TransferenciaStrategy ..> CuentaBancaria : debita y acredita
+    GestorTransacciones o--> "1\n-estrategia" TransaccionStrategy
+    TransaccionStrategy <|.. DepositoStrategy
+    TransaccionStrategy <|.. ExtraccionStrategy
+    TransaccionStrategy <|.. TransferenciaStrategy
+    GestorTransacciones --> "1\n-cuentaOrigen" CuentaBancaria
+    GestorTransacciones --> "0..1\n-cuentaDestino" CuentaBancaria
+    DepositoStrategy ..> CuentaBancaria
+    ExtraccionStrategy ..> CuentaBancaria
+    TransferenciaStrategy ..> CuentaBancaria
 ```
 
 ---
