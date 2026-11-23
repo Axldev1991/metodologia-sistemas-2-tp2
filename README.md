@@ -12,10 +12,10 @@
 * **Repositorio:** [metodologia-sistemas-2-tp2](https://github.com/Axldev1991/metodologia-sistemas-2-tp2)
 
 ### **Integrantes del Grupo 5**
-* Castellano, Axel
-* Fernandez, Saulo
-* Rumie, Nicolás
-* Espósito, Franco
+* Castellano, Axel ([@Axldev1991](https://github.com/Axldev1991))
+* Fernandez, Saulo ([@serenomoon](https://github.com/serenomoon))
+* Rumie, Nicolás ([@nicolasrumie](https://github.com/nicolasrumie))
+* Espósito, Franco ([@francoesposito](https://github.com/francoesposito))
 * Cuenca, Francisco
 * Salaberry, Thiago
 
