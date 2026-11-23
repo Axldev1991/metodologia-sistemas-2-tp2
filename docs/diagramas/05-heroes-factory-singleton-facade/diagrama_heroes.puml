@@ -10,7 +10,7 @@ skinparam class {
 
 title Patrón Combinado: Factory Method + Singleton + Facade (Punto 5)
 
-' Fachada y Singleton (Centro Arriba)
+' Fachada y Singleton (Arriba)
 class GestorCentralHeroes <<Singleton>> <<Facade>> {
     - {static} instancia: GestorCentralHeroes
     - heroesRegistrados: List<Heroe>
@@ -23,7 +23,7 @@ class GestorCentralHeroes <<Singleton>> <<Facade>> {
     + getHeroesRegistrados(): List<Heroe>
 }
 
-' Jerarquía de Creadores (Factory Method - Izquierda)
+' Lado Izquierdo: Jerarquía de Creadores (Factory Method)
 abstract class CreadorHeroe <<Creator>> {
     + {abstract} crearHeroe(datos: DatosCreacionHeroe): Heroe
 }
@@ -36,7 +36,7 @@ class CreadorMago <<ConcreteCreator>> {
     + crearHeroe(datos: DatosCreacionHeroe): Heroe
 }
 
-' Jerarquía de Productos (Factory Method - Derecha)
+' Lado Derecho: Jerarquía de Productos (Héroes)
 abstract class Heroe <<Product>> {
     - nombre: String
     - apodo: String
@@ -63,25 +63,26 @@ class MagoHeroe <<ConcreteProduct>> {
     + getDescripcionTipo(): String
 }
 
-' Relaciones del Singleton / Facade con los Creadores y los Héroes
-GestorCentralHeroes o--> "1\n-creadorGuerrero" CreadorHeroe
-GestorCentralHeroes o--> "1\n-creadorMago" CreadorHeroe
-GestorCentralHeroes o--> "*\n-heroesRegistrados" Heroe
+' Relaciones del Singleton / Fachada
+GestorCentralHeroes -down-> "1\n-creadorGuerrero" CreadorHeroe
+GestorCentralHeroes -down-> "1\n-creadorMago" CreadorHeroe
+GestorCentralHeroes -down-> "*\n-heroesRegistrados" Heroe
 
-' Herencia de Creadores
+' Separación de columnas
+CreadorHeroe -[hidden]right- Heroe
+
+' Herencia de Creadores (Columna izquierda)
 CreadorHeroe <|-- CreadorGuerrero
 CreadorHeroe <|-- CreadorMago
+CreadorGuerrero -[hidden]down- CreadorMago
 
-' Herencia de Productos
+' Herencia de Productos (Columna derecha)
 Heroe <|-- GuerreroHeroe
 Heroe <|-- MagoHeroe
+GuerreroHeroe -[hidden]down- MagoHeroe
 
-' Dependencia de Creación del Factory Method
-CreadorGuerrero ..> GuerreroHeroe
-CreadorMago ..> MagoHeroe
-
-' Alineaciones estéticas
-CreadorGuerrero -[hidden]right- CreadorMago
-GuerreroHeroe -[hidden]right- MagoHeroe
+' Dependencias de Creación horizontales directas (sin cruces)
+CreadorGuerrero -right..> GuerreroHeroe
+CreadorMago -right..> MagoHeroe
 
 @enduml
