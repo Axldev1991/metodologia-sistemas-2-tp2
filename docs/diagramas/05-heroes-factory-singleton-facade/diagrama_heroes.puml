@@ -23,66 +23,63 @@ class GestorCentralHeroes <<Singleton>> <<Facade>> {
     + getHeroesRegistrados(): List<Heroe>
 }
 
-' Lado Izquierdo: Jerarquía de Creadores (Factory Method)
-abstract class CreadorHeroe <<Creator>> {
-    + {abstract} crearHeroe(datos: DatosCreacionHeroe): Heroe
+package "Fábricas de Héroes (Factory Method)" {
+    abstract class CreadorHeroe <<Creator>> {
+        + {abstract} crearHeroe(datos: DatosCreacionHeroe): Heroe
+    }
+
+    class CreadorGuerrero <<ConcreteCreator>> {
+        + crearHeroe(datos: DatosCreacionHeroe): Heroe
+    }
+
+    class CreadorMago <<ConcreteCreator>> {
+        + crearHeroe(datos: DatosCreacionHeroe): Heroe
+    }
+
+    CreadorHeroe <|-- CreadorGuerrero
+    CreadorHeroe <|-- CreadorMago
+    CreadorGuerrero -[hidden]right- CreadorMago
 }
 
-class CreadorGuerrero <<ConcreteCreator>> {
-    + crearHeroe(datos: DatosCreacionHeroe): Heroe
+package "Jerarquía de Héroes (Productos)" {
+    abstract class Heroe <<Product>> {
+        - nombre: String
+        - apodo: String
+        - fechaCreacion: LocalDate
+        + Heroe(nombre: String, apodo: String, fechaCreacion: LocalDate)
+        + getNombre(): String
+        + getApodo(): String
+        + getFechaCreacion(): LocalDate
+        + {abstract} calcularPoderTotal(): double
+        + {abstract} getDescripcionTipo(): String
+    }
+
+    class GuerreroHeroe <<ConcreteProduct>> {
+        - poderAtaque: double
+        - victorias: int
+        - bonoPorVictoria: double
+        + calcularPoderTotal(): double
+        + getDescripcionTipo(): String
+    }
+
+    class MagoHeroe <<ConcreteProduct>> {
+        - reservaMana: double
+        + calcularPoderTotal(): double
+        + getDescripcionTipo(): String
+    }
+
+    Heroe <|-- GuerreroHeroe
+    Heroe <|-- MagoHeroe
+    GuerreroHeroe -[hidden]right- MagoHeroe
 }
 
-class CreadorMago <<ConcreteCreator>> {
-    + crearHeroe(datos: DatosCreacionHeroe): Heroe
-}
-
-' Lado Derecho: Jerarquía de Productos (Héroes)
-abstract class Heroe <<Product>> {
-    - nombre: String
-    - apodo: String
-    - fechaCreacion: LocalDate
-    + Heroe(nombre: String, apodo: String, fechaCreacion: LocalDate)
-    + getNombre(): String
-    + getApodo(): String
-    + getFechaCreacion(): LocalDate
-    + {abstract} calcularPoderTotal(): double
-    + {abstract} getDescripcionTipo(): String
-}
-
-class GuerreroHeroe <<ConcreteProduct>> {
-    - poderAtaque: double
-    - victorias: int
-    - bonoPorVictoria: double
-    + calcularPoderTotal(): double
-    + getDescripcionTipo(): String
-}
-
-class MagoHeroe <<ConcreteProduct>> {
-    - reservaMana: double
-    + calcularPoderTotal(): double
-    + getDescripcionTipo(): String
-}
-
-' Relaciones del Singleton / Fachada
-GestorCentralHeroes -down-> "1\n-creadorGuerrero" CreadorHeroe
-GestorCentralHeroes -down-> "1\n-creadorMago" CreadorHeroe
+' Relaciones de la Fachada
+GestorCentralHeroes -down-> "1\n-creadorGuerrero" CreadorGuerrero
+GestorCentralHeroes -down-> "1\n-creadorMago" CreadorMago
 GestorCentralHeroes -down-> "*\n-heroesRegistrados" Heroe
 
-' Separación de columnas
-CreadorHeroe -[hidden]right- Heroe
-
-' Herencia de Creadores (Columna izquierda)
-CreadorHeroe <|-- CreadorGuerrero
-CreadorHeroe <|-- CreadorMago
-CreadorGuerrero -[hidden]down- CreadorMago
-
-' Herencia de Productos (Columna derecha)
-Heroe <|-- GuerreroHeroe
-Heroe <|-- MagoHeroe
-GuerreroHeroe -[hidden]down- MagoHeroe
-
-' Dependencias de Creación horizontales directas (sin cruces)
-CreadorGuerrero -right..> GuerreroHeroe
-CreadorMago -right..> MagoHeroe
+' Dependencias de Creación (cada creador a su producto correspondiente)
+CreadorGuerrero ..> GuerreroHeroe
+CreadorMago ..> MagoHeroe
 
 @enduml
