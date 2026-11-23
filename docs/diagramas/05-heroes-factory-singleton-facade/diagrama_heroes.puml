@@ -23,20 +23,7 @@ class GestorCentralHeroes <<Singleton>> <<Facade>> {
     + getHeroesRegistrados(): List<Heroe>
 }
 
-' Lado Izquierdo: Jerarquía de Creadores (Factory Method)
-abstract class CreadorHeroe <<Creator>> {
-    + {abstract} crearHeroe(datos: DatosCreacionHeroe): Heroe
-}
-
-class CreadorGuerrero <<ConcreteCreator>> {
-    + crearHeroe(datos: DatosCreacionHeroe): Heroe
-}
-
-class CreadorMago <<ConcreteCreator>> {
-    + crearHeroe(datos: DatosCreacionHeroe): Heroe
-}
-
-' Lado Derecho: Jerarquía de Productos (Héroes)
+' Columna Izquierda: Jerarquía de Productos (Héroes)
 abstract class Heroe <<Product>> {
     - nombre: String
     - apodo: String
@@ -61,6 +48,19 @@ class MagoHeroe <<ConcreteProduct>> {
     - reservaMana: double
     + calcularPoderTotal(): double
     + getDescripcionTipo(): String
+}
+
+' Columna Derecha: Jerarquía de Creadores (Factory Method)
+abstract class CreadorHeroe <<Creator>> {
+    + {abstract} crearHeroe(datos: DatosCreacionHeroe): Heroe
+}
+
+class CreadorGuerrero <<ConcreteCreator>> {
+    + crearHeroe(datos: DatosCreacionHeroe): Heroe
+}
+
+class CreadorMago <<ConcreteCreator>> {
+    + crearHeroe(datos: DatosCreacionHeroe): Heroe
 }
 
 ' Relaciones del Singleton / Fachada
