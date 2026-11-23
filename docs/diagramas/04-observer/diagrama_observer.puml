@@ -1,0 +1,75 @@
+@startuml diagrama_observer
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam linetype ortho
+skinparam class {
+    BackgroundColor White
+    ArrowColor #2C3E50
+    BorderColor #2C3E50
+}
+
+title Patrón Observer - Sistema de Monitoreo Ambiental en Tiempo Real (Punto 4)
+
+' Sujeto Observable (Izquierda)
+class Sensor <<Subject>> {
+    - tipo: String
+    - unidad: String
+    - valorActual: double
+    + Sensor(tipo: String, unidad: String, valorInicial: double)
+    + getTipo(): String
+    + getUnidad(): String
+    + getValorActual(): double
+    + suscribir(observador: ObservadorSensor): void
+    + desuscribir(observador: ObservadorSensor): void
+    + registrarNuevoValor(nuevoValor: double): void
+    # notificarObservadores(): void
+    + getCantidadObservadores(): int
+}
+
+class Medicion <<ValueObject>> {
+    + tipoSensor: String
+    + valor: double
+    + unidad: String
+}
+
+' Interfaz Observador (Derecha arriba)
+interface ObservadorSensor <<Observer>> {
+    + {abstract} actualizar(sensor: Sensor, medicion: Medicion): void
+}
+
+' Observadores Concretos (Derecha abajo)
+class PanelPrincipal <<ConcreteObserver>> {
+    - ultimasLecturas: Map<String, Double>
+    + actualizar(sensor: Sensor, medicion: Medicion): void
+    + getUltimaLectura(tipoSensor: String): Double
+    + getCantidadSensoresMonitoreados(): int
+}
+
+class PanelAlertas <<ConcreteObserver>> {
+    - umbralCritico: double
+    - alertasGeneradas: List<String>
+    + PanelAlertas(umbralCritico: double)
+    + actualizar(sensor: Sensor, medicion: Medicion): void
+    + getAlertasGeneradas(): List<String>
+}
+
+class RegistroConsola <<ConcreteObserver>> {
+    - logs: List<String>
+    + actualizar(sensor: Sensor, medicion: Medicion): void
+    + getLogs(): List<String>
+}
+
+' Relación Sujeto -> Observadores
+Sensor o--> "*\n-observadores" ObservadorSensor
+Sensor ..> Medicion : crea / emite
+
+' Realizaciones de los observadores concretos
+ObservadorSensor <|.. PanelPrincipal
+ObservadorSensor <|.. PanelAlertas
+ObservadorSensor <|.. RegistroConsola
+
+' Alineación horizontal de observadores concretos
+PanelPrincipal -[hidden]right- PanelAlertas
+PanelAlertas -[hidden]right- RegistroConsola
+
+@enduml
