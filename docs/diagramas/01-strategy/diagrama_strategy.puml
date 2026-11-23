@@ -1,0 +1,63 @@
+@startuml diagrama_strategy
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam class {
+    BackgroundColor White
+    ArrowColor #2C3E50
+    BorderColor #2C3E50
+}
+
+title Patrón Strategy - Gestión de Transacciones Bancarias (Punto 1)
+
+class GestorTransacciones <<Context>> {
+    - estrategia: TransaccionStrategy
+    - monto: BigDecimal
+    - cuentaOrigen: CuentaBancaria
+    - cuentaDestino: CuentaBancaria
+    + GestorTransacciones()
+    + GestorTransacciones(estrategiaInicial: TransaccionStrategy)
+    + setEstrategia(estrategia: TransaccionStrategy): void
+    + getEstrategia(): TransaccionStrategy
+    + prepararTransaccion(monto: BigDecimal, origen: CuentaBancaria, destino: CuentaBancaria): void
+    + confirmarTransaccion(): void
+}
+
+interface TransaccionStrategy <<Strategy>> {
+    + {abstract} ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
+}
+
+class DepositoStrategy <<ConcreteStrategy>> {
+    + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
+}
+
+class ExtraccionStrategy <<ConcreteStrategy>> {
+    + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
+}
+
+class TransferenciaStrategy <<ConcreteStrategy>> {
+    + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
+}
+
+class CuentaBancaria {
+    - cbu: String
+    - titular: String
+    - saldo: BigDecimal
+    + CuentaBancaria(cbu: String, titular: String, saldoInicial: BigDecimal)
+    + getCbu(): String
+    + getTitular(): String
+    + getSaldo(): BigDecimal
+    + acreditar(monto: BigDecimal): void
+    + debitar(monto: BigDecimal): void
+}
+
+GestorTransacciones o-> TransaccionStrategy : delega / conmuta
+TransaccionStrategy <|.. DepositoStrategy : implementa
+TransaccionStrategy <|.. ExtraccionStrategy : implementa
+TransaccionStrategy <|.. TransferenciaStrategy : implementa
+
+GestorTransacciones --> CuentaBancaria : opera sobre
+DepositoStrategy ..> CuentaBancaria : acredita
+ExtraccionStrategy ..> CuentaBancaria : debita
+TransferenciaStrategy ..> CuentaBancaria : debita y acredita
+
+@enduml
