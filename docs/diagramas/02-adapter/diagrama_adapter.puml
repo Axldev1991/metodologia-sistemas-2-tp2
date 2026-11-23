@@ -1,0 +1,80 @@
+@startuml diagrama_adapter
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam linetype ortho
+skinparam class {
+    BackgroundColor White
+    ArrowColor #2C3E50
+    BorderColor #2C3E50
+}
+
+title Patrón Adapter - Sistema de Pagos de Reservas de Hotel (Punto 2)
+
+' Cliente (Izquierda)
+class Reserva <<Client>> {
+    - montoTotal: BigDecimal
+    - pagada: boolean
+    + Reserva(huesped: Huesped, montoTotal: BigDecimal)
+    + getHuesped(): Huesped
+    + getMontoTotal(): BigDecimal
+    + isPagada(): boolean
+    + pagarCon(medio: MedioPago): void
+}
+
+class Huesped {
+    - nombre: String
+    - apellido: String
+    - email: String
+    - numeroTarjeta: String
+    + Huesped(nombre: String, apellido: String, email: String, numeroTarjeta: String)
+    + getNombre(): String
+    + getApellido(): String
+    + getEmail(): String
+    + getNumeroTarjeta(): String
+}
+
+' Interfaz Objetivo (Centro)
+interface MedioPago <<Target>> {
+    + {abstract} procesarPago(huesped: Huesped, monto: BigDecimal): void
+}
+
+' Adaptadores (Centro abajo)
+class TarjetaCreditoAdapter <<Adapter>> {
+    + TarjetaCreditoAdapter(tarjetaCredito: TarjetaCredito)
+    + procesarPago(huesped: Huesped, monto: BigDecimal): void
+}
+
+class BilleteraVirtualAdapter <<Adapter>> {
+    + BilleteraVirtualAdapter(billeteraVirtual: BilleteraVirtual)
+    + procesarPago(huesped: Huesped, monto: BigDecimal): void
+}
+
+' Clases Existentes / Inmodificables (Derecha)
+class TarjetaCredito <<Adaptee>> {
+    - limiteDisponible: BigDecimal
+    + TarjetaCredito(limiteDisponible: BigDecimal)
+    + validarLimite(numeroTarjeta: String, monto: BigDecimal): boolean
+    + autorizarCargo(numeroTarjeta: String, monto: BigDecimal): boolean
+}
+
+class BilleteraVirtual <<Adaptee>> {
+    - ultimoPagoExitoso: boolean
+    + pagarConEmail(email: String, monto: BigDecimal): boolean
+    + isUltimoPagoExitoso(): boolean
+}
+
+' Relaciones
+Reserva --> "1\n-huesped" Huesped
+Reserva --> "1" MedioPago : usa / pagarCon
+
+MedioPago <|.. TarjetaCreditoAdapter
+MedioPago <|.. BilleteraVirtualAdapter
+
+TarjetaCreditoAdapter o--> "1\n-tarjetaCredito" TarjetaCredito
+BilleteraVirtualAdapter o--> "1\n-billeteraVirtual" BilleteraVirtual
+
+' Alineaciones estéticas
+TarjetaCreditoAdapter -[hidden]right- BilleteraVirtualAdapter
+TarjetaCredito -[hidden]down- BilleteraVirtual
+
+@enduml
