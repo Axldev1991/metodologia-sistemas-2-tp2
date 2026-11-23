@@ -1,0 +1,50 @@
+@startuml diagrama_template_method
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam linetype ortho
+skinparam class {
+    BackgroundColor White
+    ArrowColor #2C3E50
+    BorderColor #2C3E50
+}
+
+title Patrón Template Method - Combate en Videojuego (Punto 3)
+
+abstract class Personaje <<AbstractClass>> {
+    - nombre: String
+    - registroAcciones: List<String>
+    + Personaje(nombre: String)
+    + getNombre(): String
+    + getRegistroAcciones(): List<String>
+    # registrar(accion: String): void
+    + pelear(): void {final}
+    # {abstract} prepararEquipamiento(): void
+    # {abstract} posicionarse(): void
+    # {abstract} ejecutarAtaque(): void
+    # evaluarResultadoCombate(): void
+    # debeCelebrar(): boolean {hook}
+    # celebrarVictoria(): void {hook}
+}
+
+class Guerrero <<ConcreteClass>> {
+    + Guerrero(nombre: String)
+    # prepararEquipamiento(): void
+    # posicionarse(): void
+    # ejecutarAtaque(): void
+    # celebrarVictoria(): void
+}
+
+class Mago <<ConcreteClass>> {
+    + Mago(nombre: String)
+    # prepararEquipamiento(): void
+    # posicionarse(): void
+    # ejecutarAtaque(): void
+    # debeCelebrar(): boolean
+}
+
+Personaje <|-- Guerrero
+Personaje <|-- Mago
+
+Guerrero -[hidden]right- Mago
+
+@enduml
