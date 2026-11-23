@@ -28,3 +28,4 @@ public class MagoHeroe extends Heroe {
         return "Mago [Reserva Maná: " + reservaMana + "]";
     }
 }
+

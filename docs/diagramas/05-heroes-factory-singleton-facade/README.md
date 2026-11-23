@@ -97,3 +97,4 @@ classDiagram
     CreadorGuerrero ..> GuerreroHeroe : crea
     CreadorMago ..> MagoHeroe : crea
 ```
+

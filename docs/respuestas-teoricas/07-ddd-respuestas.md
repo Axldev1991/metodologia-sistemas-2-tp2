@@ -62,3 +62,4 @@ Los diagramas UML no deben concebirse como mero papeleo burocrático, sino como 
 2. **Favorecimiento del lenguaje común entre desarrolladores y expertos:**
    * **Medio de validación visual accesible:** Un experto de dominio no necesita saber programar en Java para entender un diagrama de clases conceptual o una secuencia. Puede mirar el diagrama y corregir al equipo técnico: *"No, un cliente no aprueba el crédito directamente; el límite lo valida el Analista de Riesgos"*.
    * **Evita el sesgo técnico:** Al utilizar exclusivamente los términos del Lenguaje Ubicuo en los diagramas (en lugar de conceptos de infraestructura como tablas, endpoints HTTP o cursores SQL), se mantiene la conversación centrada en el valor de negocio, garantizando que el software refleje fielmente el problema a resolver.
+

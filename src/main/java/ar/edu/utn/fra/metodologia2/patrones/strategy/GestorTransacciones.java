@@ -42,3 +42,4 @@ public class GestorTransacciones {
         this.estrategia.ejecutar(this.monto, this.cuentaOrigen, this.cuentaDestino);
     }
 }
+

@@ -28,6 +28,8 @@ public class Mago extends Personaje {
 
     @Override
     protected boolean debeCelebrar() {
+        // Ejemplo de personalización de hook: los magos sabios meditan en silencio en vez de festejar ruidosamente
         return false;
     }
 }
+

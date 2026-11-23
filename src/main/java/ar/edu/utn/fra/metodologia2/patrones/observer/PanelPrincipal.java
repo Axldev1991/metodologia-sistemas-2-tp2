@@ -23,3 +23,4 @@ public class PanelPrincipal implements ObservadorSensor {
         return ultimasLecturas.size();
     }
 }
+

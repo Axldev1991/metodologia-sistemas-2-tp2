@@ -32,3 +32,4 @@ public abstract class Heroe {
     public abstract double calcularPoderTotal();
     public abstract String getDescripcionTipo();
 }
+

@@ -7,3 +7,4 @@ package ar.edu.utn.fra.metodologia2.patrones.heroes;
 public abstract class CreadorHeroe {
     public abstract Heroe crearHeroe(DatosCreacionHeroe datos);
 }
+

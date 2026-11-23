@@ -19,3 +19,4 @@ public class RegistroConsola implements ObservadorSensor {
         return List.copyOf(logs);
     }
 }
+

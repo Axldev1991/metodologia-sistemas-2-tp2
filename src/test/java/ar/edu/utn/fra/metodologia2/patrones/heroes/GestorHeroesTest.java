@@ -23,7 +23,7 @@ class GestorHeroesTest {
         GestorCentralHeroes instancia1 = GestorCentralHeroes.getInstancia();
         GestorCentralHeroes instancia2 = GestorCentralHeroes.getInstancia();
 
-        assertSame(instancia1, instancia2);
+        assertSame(instancia1, instancia2, "Ambas referencias deben apuntar al mismo objeto en memoria");
     }
 
     @Test
@@ -34,18 +34,19 @@ class GestorHeroesTest {
 
         assertEquals(2, gestor.getHeroesRegistrados().size());
         assertEquals("Conan", conan.getNombre());
-        assertEquals(100.0, conan.calcularPoderTotal());
+        assertEquals(100.0, conan.calcularPoderTotal(), "Poder base (50) + 10 victorias * 5 bono = 100");
+
         assertEquals("Gandalf", gandalf.getNombre());
-        assertEquals(150.0, gandalf.calcularPoderTotal());
+        assertEquals(150.0, gandalf.calcularPoderTotal(), "100 mana * 1.5 = 150");
     }
 
     @Test
     @DisplayName("Punto 3 (Facade): Consultar el mejor guerrero entre múltiples guerreros registrados")
     void testConsultarMejorGuerrero() {
-        gestor.reclutarGuerrero("Aragorn", "Trancos", 40.0, 5, 2.0);
-        gestor.reclutarGuerrero("Gimli", "Hijo de Gloin", 60.0, 12, 3.0);
-        gestor.reclutarGuerrero("Boromir", "Capitán de Gondor", 45.0, 4, 2.0);
-        gestor.reclutarMago("Saruman", "El Sabio", 200.0);
+        gestor.reclutarGuerrero("Aragorn", "Trancos", 40.0, 5, 2.0); // Poder = 50
+        gestor.reclutarGuerrero("Gimli", "Hijo de Gloin", 60.0, 12, 3.0); // Poder = 96
+        gestor.reclutarGuerrero("Boromir", "Capitán de Gondor", 45.0, 4, 2.0); // Poder = 53
+        gestor.reclutarMago("Saruman", "El Sabio", 200.0); // No debe interferir por ser Mago
 
         GuerreroHeroe mejor = gestor.consultarMejorGuerrero();
         assertNotNull(mejor);
@@ -63,5 +64,7 @@ class GestorHeroesTest {
         assertNotNull(reporte);
         assertTrue(reporte.contains("Thor"));
         assertTrue(reporte.contains("Dr. Strange"));
+        assertTrue(reporte.contains("Poder Total"));
     }
 }
+

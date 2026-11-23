@@ -9,3 +9,4 @@ public interface Habilidad {
     String getDescripcionTipo();
     String getEfectoFuerza();
 }
+

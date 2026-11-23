@@ -24,3 +24,4 @@ Los **hooks** (operaciones de enganche) sirven para habilitar **puntos de extens
 Se considera un ejemplo clásico de IoC porque:
 * **Quién tiene el control del flujo:** La **superclase abstracta** (`Personaje`). Ella es el árbitro supremo: decide rígidamente cuándo arranca el combate, qué paso se ejecuta primero, cuál sigue después, cuándo se evalúa la condición del hook y cuándo termina.
 * **Qué responsabilidad tienen las subclases:** Las subclases (`Guerrero`, `Mago`) quedan relegadas a un rol subordinado o reactivo. No pueden alterar la secuencia ni decidir cuándo pelear; su única responsabilidad es suministrar la lógica concreta de cada paso individual cuando la superclase las invoque.
+

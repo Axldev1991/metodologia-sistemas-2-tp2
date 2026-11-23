@@ -49,7 +49,7 @@
   3. *Qué se puede redefinir:* Operaciones primitivas abstractas, métodos concretos no finales y operaciones de enganche (*hooks*).
   4. *Inversión de Control (IoC):* Principio ("Principio de Hollywood") donde el flujo lo gobierna la superclase y llama a las subclases cuando corresponde.
   5. *Hooks:* Puntos de extensión opcionales con comportamiento por defecto. Se agregó `debeCelebrar()` y `celebrarVictoria()`.
-  6. *Por qué aplica IoC:* La superclase tiene el control exclusivo del flujo de ejecución; las subclases solo rellenan los detalles individuales al ser invocadas.
+  6. *Por qué aplica IoC:* La clase `Personaje` dirige y orquesta el combate; las subclases solo rellenan los detalles individuales al ser invocadas.
 * **Diagrama UML:** Ver `docs/diagramas/03-template-method/diagrama_template_method.puml`.
 * **Código Java:** Implementado en `src/main/java/.../patrones/templatemethod/` y validado con tests en `PersonajeTemplateMethodTest.java`.
 
@@ -106,3 +106,4 @@ UML actúa como puente visual neutral:
 * **Diagramas de Clases:** Mapean la estructura conceptual del dominio (Entidades, Value Objects, Agregados).
 * **Diagramas de Secuencia:** Visualizan la colaboración temporal de los objetos para resolver reglas de negocio.
 Favorecen el lenguaje común porque permiten validar con los expertos si el modelo refleja fielmente la realidad antes de codificar, utilizando términos de negocio en lugar de conceptos técnicos de infraestructura.
+

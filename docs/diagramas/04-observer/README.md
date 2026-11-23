@@ -88,3 +88,4 @@ classDiagram
 * **`<<Observer>>` (`ObservadorSensor`):** Interfaz común que define el contrato `actualizar(sensor, medicion)` que todo panel o suscriptor debe cumplir.
 * **`<<ConcreteObserver>>` (`PanelPrincipal`, `PanelAlertas`, `RegistroConsola`):** Paneles y componentes gráficos que reaccionan de forma particular al recibir los nuevos valores.
 * **`<<ValueObject>>` (`Medicion`):** Contenedor inmutable de datos que transporta la lectura (tipo, valor, unidad).
+

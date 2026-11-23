@@ -46,6 +46,7 @@ class HabilidadCuerpoACuerpo {
     + getEfectoFuerza(): String
 }
 
+' Relaciones polimórficas desacopladas
 Videojuego o--> "*\n-personajes" Personaje
 Personaje --> "1\n-tipoHabilidad" Habilidad
 
@@ -55,3 +56,4 @@ Habilidad <|.. HabilidadCuerpoACuerpo
 HabilidadMagica -[hidden]right- HabilidadCuerpoACuerpo
 
 @enduml
+

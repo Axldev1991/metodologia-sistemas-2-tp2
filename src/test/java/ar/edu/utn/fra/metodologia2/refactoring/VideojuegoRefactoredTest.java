@@ -15,17 +15,17 @@ class VideojuegoRefactoredTest {
         Personaje mago = new Personaje("Merlín", 50.0, new HabilidadMagica());
         Personaje guerrero = new Personaje("Arturo", 50.0, new HabilidadCuerpoACuerpo());
 
-        assertEquals(100.0, mago.calcularDañoEfectivo());
-        assertEquals(50.0, guerrero.calcularDañoEfectivo());
+        assertEquals(100.0, mago.calcularDañoEfectivo(), "Habilidad mágica duplica la fuerza");
+        assertEquals(50.0, guerrero.calcularDañoEfectivo(), "Habilidad cuerpo a cuerpo mantiene la fuerza");
     }
 
     @Test
     @DisplayName("Debe encontrar el personaje con más daño efectivo considerando el multiplicador de su habilidad")
     void testPersonajeConMasDaño() {
         Videojuego juego = new Videojuego();
-        Personaje p1 = new Personaje("Guerrero Débil", 30.0, new HabilidadCuerpoACuerpo());
-        Personaje p2 = new Personaje("Mago Poderoso", 40.0, new HabilidadMagica());
-        Personaje p3 = new Personaje("Guerrero Fuerte", 70.0, new HabilidadCuerpoACuerpo());
+        Personaje p1 = new Personaje("Guerrero Débil", 30.0, new HabilidadCuerpoACuerpo()); // 30
+        Personaje p2 = new Personaje("Mago Poderoso", 40.0, new HabilidadMagica());         // 80
+        Personaje p3 = new Personaje("Guerrero Fuerte", 70.0, new HabilidadCuerpoACuerpo()); // 70
 
         juego.agregarPersonaje(p1);
         juego.agregarPersonaje(p2);
@@ -48,3 +48,4 @@ class VideojuegoRefactoredTest {
         assertTrue(info.contains("Esta habilidad dobla tu fuerza"));
     }
 }
+

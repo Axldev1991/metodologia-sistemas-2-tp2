@@ -66,3 +66,4 @@ classDiagram
 
 ## 4. Respuestas a las 6 Preguntas Teóricas
 El desarrollo exhaustivo de las preguntas sobre Inversión de Control, Hooks y redefinición del esqueleto se encuentra documentado en [docs/respuestas-teoricas/03-template-method-respuestas.md](file:///home/axel/Escritorio/UTN/M%20de%20Sistemas%20II/parcial-2/docs/respuestas-teoricas/03-template-method-respuestas.md).
+

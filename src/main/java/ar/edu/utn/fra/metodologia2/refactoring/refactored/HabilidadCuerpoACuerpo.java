@@ -4,7 +4,7 @@ public class HabilidadCuerpoACuerpo implements Habilidad {
 
     @Override
     public double calcularDaño(double dañoBase) {
-        return dañoBase;
+        return dañoBase; // Mantiene la fuerza
     }
 
     @Override
@@ -17,3 +17,4 @@ public class HabilidadCuerpoACuerpo implements Habilidad {
         return "Este habilidad mantiene tu fuerza";
     }
 }
+

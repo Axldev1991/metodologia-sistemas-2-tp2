@@ -59,3 +59,4 @@ public class Sensor {
         return observadores.size();
     }
 }
+

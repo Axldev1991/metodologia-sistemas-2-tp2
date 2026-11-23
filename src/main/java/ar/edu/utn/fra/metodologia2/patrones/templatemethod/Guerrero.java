@@ -31,3 +31,4 @@ public class Guerrero extends Personaje {
         registrar(getNombre() + " levanta su espada y lanza un grito de guerra triunfal.");
     }
 }
+

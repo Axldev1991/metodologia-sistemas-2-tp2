@@ -48,3 +48,4 @@ Personaje <|-- Mago
 Guerrero -[hidden]right- Mago
 
 @enduml
+

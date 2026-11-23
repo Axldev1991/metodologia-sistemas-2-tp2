@@ -73,3 +73,4 @@ PanelPrincipal -[hidden]right- PanelAlertas
 PanelAlertas -[hidden]right- RegistroConsola
 
 @enduml
+

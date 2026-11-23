@@ -32,3 +32,4 @@ public class Huesped {
         return numeroTarjeta;
     }
 }
+

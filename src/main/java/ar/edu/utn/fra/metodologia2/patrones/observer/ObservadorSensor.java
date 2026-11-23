@@ -8,3 +8,4 @@ package ar.edu.utn.fra.metodologia2.patrones.observer;
 public interface ObservadorSensor {
     void actualizar(Sensor sensor, Medicion medicion);
 }
+

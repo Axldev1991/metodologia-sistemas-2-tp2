@@ -22,3 +22,4 @@ public record DatosCreacionHeroe(
         return new DatosCreacionHeroe(nombre, apodo, LocalDate.now(), 0.0, 0, 0.0, mana);
     }
 }
+

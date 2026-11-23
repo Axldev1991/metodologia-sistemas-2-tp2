@@ -19,6 +19,8 @@ public class TarjetaCredito {
     }
 
     public boolean autorizarCargo(String numeroTarjeta, BigDecimal monto) {
+        // Simula la llamada a la red de tarjetas (Visa/Mastercard)
         return true;
     }
 }
+

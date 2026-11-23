@@ -41,3 +41,4 @@ public class GuerreroHeroe extends Heroe {
         return "Guerrero [Ataque: " + poderAtaque + ", Victorias: " + victorias + "]";
     }
 }
+

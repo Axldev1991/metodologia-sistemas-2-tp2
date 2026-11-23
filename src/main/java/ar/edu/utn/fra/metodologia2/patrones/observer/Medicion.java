@@ -5,3 +5,4 @@ package ar.edu.utn.fra.metodologia2.patrones.observer;
  */
 public record Medicion(String tipoSensor, double valor, String unidad) {
 }
+

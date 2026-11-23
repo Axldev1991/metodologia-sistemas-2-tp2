@@ -26,3 +26,4 @@ public class PanelAlertas implements ObservadorSensor {
         return List.copyOf(alertasGeneradas);
     }
 }
+

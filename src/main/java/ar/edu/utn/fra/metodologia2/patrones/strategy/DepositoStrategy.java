@@ -20,3 +20,4 @@ public class DepositoStrategy implements TransaccionStrategy {
         cuentaOrigen.acreditar(monto);
     }
 }
+

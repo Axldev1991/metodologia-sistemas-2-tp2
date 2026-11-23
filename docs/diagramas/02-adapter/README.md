@@ -88,3 +88,4 @@ classDiagram
 * **`<<Target>>` (`MedioPago`):** Define el protocolo estándar del dominio que el cliente comprende (`procesarPago(huesped, monto)`).
 * **`<<Adaptee>>` (`TarjetaCredito`, `BilleteraVirtual`):** Clases existentes del sistema con interfaces incompatibles que no pueden ser alteradas.
 * **`<<Adapter>>` (`TarjetaCreditoAdapter`, `BilleteraVirtualAdapter`):** Implementan `MedioPago` y encapsulan la llamada a los métodos específicos de cada medio existente.
+

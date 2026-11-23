@@ -23,3 +23,4 @@ public class ExtraccionStrategy implements TransaccionStrategy {
         cuentaOrigen.debitar(monto);
     }
 }
+

@@ -3,6 +3,10 @@ package ar.edu.utn.fra.metodologia2.refactoring.refactored;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase refactorizada libre de malos olores (bad smells).
+ * Aplica polimorfismo, respetando el principio Open/Closed y Tell, Don't Ask.
+ */
 public class Videojuego {
     private final List<Personaje> personajes;
 
@@ -31,8 +35,10 @@ public class Videojuego {
     public String imprimirInfo(Personaje p) {
         StringBuilder sb = new StringBuilder();
         sb.append(p.getNombre()).append(" tiene como daño ").append(p.getDaño()).append("\n");
+        // POLIMORFISMO PURO: Sin un solo if/else inspeccionando clases
         sb.append(p.getTipoHabilidad().getDescripcionTipo()).append("\n");
         sb.append(p.getTipoHabilidad().getEfectoFuerza());
         return sb.toString();
     }
 }
+

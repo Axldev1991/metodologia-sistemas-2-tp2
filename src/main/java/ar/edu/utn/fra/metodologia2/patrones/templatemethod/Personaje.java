@@ -55,11 +55,13 @@ public abstract class Personaje {
     }
 
     // OPERACIONES DE ENGANCHE (HOOKS)
+    // Permiten puntos de extensión opcionales sin obligar a todas las subclases a sobreescribirlos.
     protected boolean debeCelebrar() {
-        return true;
+        return true; // Por defecto todos celebran
     }
 
     protected void celebrarVictoria() {
         registrar(nombre + " festeja la victoria en el combate.");
     }
 }
+

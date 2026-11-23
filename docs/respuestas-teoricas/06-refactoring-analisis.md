@@ -41,3 +41,4 @@ Según el catálogo de Martin Fowler, la técnica canónica a aplicar es:
 
 ## 4. Corrección del Código y Modelo UML
 El código corregido fue implementado en `src/main/java/ar/edu/utn/fra/metodologia2/refactoring/refactored/` y validado con tests unitarios en `VideojuegoRefactoredTest.java`.
+

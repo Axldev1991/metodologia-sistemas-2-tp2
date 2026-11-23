@@ -39,3 +39,4 @@ class PersonajeTemplateMethodTest {
         assertTrue(acciones.get(3).contains("evalúa el resultado"));
     }
 }
+

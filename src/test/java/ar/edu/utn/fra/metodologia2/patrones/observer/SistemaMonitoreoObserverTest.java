@@ -21,7 +21,7 @@ class SistemaMonitoreoObserverTest {
         sensorCO2 = new Sensor("CO2", "ppm", 400.0);
 
         panelPrincipal = new PanelPrincipal();
-        panelAlertasCO2 = new PanelAlertas(1000.0);
+        panelAlertasCO2 = new PanelAlertas(1000.0); // Alerta si CO2 supera 1000 ppm
         consola = new RegistroConsola();
     }
 
@@ -43,9 +43,11 @@ class SistemaMonitoreoObserverTest {
     void testDisparoDeAlertasPorUmbral() {
         sensorCO2.suscribir(panelAlertasCO2);
 
+        // Lectura normal: no dispara alerta
         sensorCO2.registrarNuevoValor(600.0);
         assertTrue(panelAlertasCO2.getAlertasGeneradas().isEmpty());
 
+        // Lectura crítica: dispara alerta
         sensorCO2.registrarNuevoValor(1250.0);
         assertEquals(1, panelAlertasCO2.getAlertasGeneradas().size());
         assertTrue(panelAlertasCO2.getAlertasGeneradas().get(0).contains("¡ALERTA CRÍTICA!"));
@@ -60,11 +62,14 @@ class SistemaMonitoreoObserverTest {
         sensorTemperatura.registrarNuevoValor(24.0);
         assertEquals(1, consola.getLogs().size());
 
+        // El usuario desactiva el registro de consola para el sensor de temperatura
         sensorTemperatura.desuscribir(consola);
 
         sensorTemperatura.registrarNuevoValor(30.0);
 
+        // El panel principal sigue recibiendo actualizaciones, pero la consola ya no
         assertEquals(30.0, panelPrincipal.getUltimaLectura("Temperatura"));
-        assertEquals(1, consola.getLogs().size());
+        assertEquals(1, consola.getLogs().size(), "La consola no debió recibir la segunda actualización");
     }
 }
+

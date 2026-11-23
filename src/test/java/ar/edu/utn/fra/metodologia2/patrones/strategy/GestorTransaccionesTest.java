@@ -66,13 +66,17 @@ class GestorTransaccionesTest {
     @Test
     @DisplayName("Requisito clave: Debe permitir cambiar de estrategia en tiempo de ejecución antes de confirmar")
     void testCambioDeEstrategiaAntesDeConfirmar() {
+        // El usuario inicialmente selecciona Extracción
         gestor.setEstrategia(new ExtraccionStrategy());
         gestor.prepararTransaccion(new BigDecimal("2000.00"), cuentaA, cuentaB);
 
+        // Antes de confirmar, cambia de opinión y selecciona Transferencia
         gestor.setEstrategia(new TransferenciaStrategy());
         gestor.confirmarTransaccion();
 
+        // Se verifica que se ejecutó la transferencia y NO la extracción simple
         assertEquals(new BigDecimal("8000.00"), cuentaA.getSaldo(), "Se debitó el origen");
         assertEquals(new BigDecimal("7000.00"), cuentaB.getSaldo(), "Se acreditó en destino gracias al cambio de estrategia");
     }
 }
+

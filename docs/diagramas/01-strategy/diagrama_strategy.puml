@@ -2,6 +2,8 @@
 skinparam classAttributeIconSize 0
 skinparam monochrome false
 skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 50
 skinparam class {
     BackgroundColor White
     ArrowColor #2C3E50
@@ -10,7 +12,7 @@ skinparam class {
 
 title Patrón Strategy - Gestión de Transacciones Bancarias (Punto 1)
 
-' Contexto (Izquierda arriba)
+' Columna Izquierda: Contexto y Entidad de Dominio
 class GestorTransacciones <<Context>> {
     - monto: BigDecimal
     + GestorTransacciones()
@@ -21,7 +23,6 @@ class GestorTransacciones <<Context>> {
     + confirmarTransaccion(): void
 }
 
-' Entidad de Dominio (Izquierda abajo)
 class CuentaBancaria {
     - cbu: String
     - titular: String
@@ -34,38 +35,37 @@ class CuentaBancaria {
     + debitar(monto: BigDecimal): void
 }
 
-' Interfaz Strategy (Derecha arriba)
+' Columna Derecha: Interfaz Strategy y Estrategias Concretas
 interface TransaccionStrategy <<Strategy>> {
-    + {abstract} ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
+    + {abstract} ejecutar(monto: BigDecimal, origen: CuentaBancaria, destino: CuentaBancaria): void
 }
 
-' Estrategias Concretas (Derecha abajo)
 class DepositoStrategy <<ConcreteStrategy>> {
-    + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
+    + ejecutar(monto: BigDecimal, origen: CuentaBancaria, destino: CuentaBancaria): void
 }
 
 class ExtraccionStrategy <<ConcreteStrategy>> {
-    + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
+    + ejecutar(monto: BigDecimal, origen: CuentaBancaria, destino: CuentaBancaria): void
 }
 
 class TransferenciaStrategy <<ConcreteStrategy>> {
-    + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
+    + ejecutar(monto: BigDecimal, origen: CuentaBancaria, destino: CuentaBancaria): void
 }
 
-' Conexión Contexto -> Strategy (Agregación horizontal como en la filmina de la cátedra)
+' Relación Contexto -> Strategy (Horizontal hacia la derecha)
 GestorTransacciones o-right-> "1\n-estrategia" TransaccionStrategy
 
-' Conexión Contexto -> Cuentas de Dominio (Hacia abajo en la columna izquierda)
+' Relaciones Contexto -> Cuentas de Dominio (Hacia abajo en la columna izquierda)
 GestorTransacciones -down-> "1\n-cuentaOrigen" CuentaBancaria
 GestorTransacciones -down-> "0..1\n-cuentaDestino" CuentaBancaria
 
-' Implementación de las estrategias concretas
+' Implementaciones concretas debajo de la interfaz
 TransaccionStrategy <|.. DepositoStrategy
 TransaccionStrategy <|.. ExtraccionStrategy
 TransaccionStrategy <|.. TransferenciaStrategy
 
-' Alineación horizontal de las estrategias concretas
-DepositoStrategy -[hidden]right- ExtraccionStrategy
-ExtraccionStrategy -[hidden]right- TransferenciaStrategy
+' Apilado vertical de las estrategias concretas
+DepositoStrategy -[hidden]down- ExtraccionStrategy
+ExtraccionStrategy -[hidden]down- TransferenciaStrategy
 
 @enduml

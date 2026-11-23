@@ -27,3 +27,4 @@ public class TransferenciaStrategy implements TransaccionStrategy {
         cuentaDestino.acreditar(monto);
     }
 }
+

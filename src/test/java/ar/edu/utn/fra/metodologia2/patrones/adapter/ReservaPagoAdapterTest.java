@@ -54,3 +54,4 @@ class ReservaPagoAdapterTest {
         assertTrue(billeteraExistente.isUltimoPagoExitoso());
     }
 }
+

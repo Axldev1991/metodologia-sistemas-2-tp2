@@ -9,3 +9,4 @@ import java.math.BigDecimal;
 public interface MedioPago {
     void procesarPago(Huesped huesped, BigDecimal monto);
 }
+

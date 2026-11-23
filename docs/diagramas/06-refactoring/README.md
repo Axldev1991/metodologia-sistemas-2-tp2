@@ -58,3 +58,4 @@ classDiagram
 
 ## 3. Respuestas Detalladas a las Preguntas 1 a 4
 Las 4 respuestas teóricas obligatorias sobre bad smells, mantenibilidad y técnicas aplicadas se encuentran en [docs/respuestas-teoricas/06-refactoring-analisis.md](file:///home/axel/Escritorio/UTN/M%20de%20Sistemas%20II/parcial-2/docs/respuestas-teoricas/06-refactoring-analisis.md).
+

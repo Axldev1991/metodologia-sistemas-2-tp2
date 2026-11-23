@@ -4,7 +4,7 @@ public class HabilidadMagica implements Habilidad {
 
     @Override
     public double calcularDaño(double dañoBase) {
-        return dañoBase * 2.0;
+        return dañoBase * 2.0; // Dobla la fuerza
     }
 
     @Override
@@ -17,3 +17,4 @@ public class HabilidadMagica implements Habilidad {
         return "Esta habilidad dobla tu fuerza";
     }
 }
+

@@ -9,3 +9,4 @@ import java.math.BigDecimal;
 public interface TransaccionStrategy {
     void ejecutar(BigDecimal monto, CuentaBancaria cuentaOrigen, CuentaBancaria cuentaDestino);
 }
+
