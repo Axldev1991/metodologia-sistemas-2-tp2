@@ -1,0 +1,87 @@
+@startuml diagrama_heroes
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam linetype ortho
+skinparam class {
+    BackgroundColor White
+    ArrowColor #2C3E50
+    BorderColor #2C3E50
+}
+
+title Patrón Combinado: Factory Method + Singleton + Facade (Punto 5)
+
+' Fachada y Singleton (Centro Arriba)
+class GestorCentralHeroes <<Singleton>> <<Facade>> {
+    - {static} instancia: GestorCentralHeroes
+    - heroesRegistrados: List<Heroe>
+    - GestorCentralHeroes()
+    + {static} getInstancia(): GestorCentralHeroes
+    + reclutarGuerrero(nombre: String, apodo: String, ataque: double, victorias: int, bono: double): GuerreroHeroe
+    + reclutarMago(nombre: String, apodo: String, mana: double): MagoHeroe
+    + consultarMejorGuerrero(): GuerreroHeroe
+    + generarReporteBatalla(): String
+    + getHeroesRegistrados(): List<Heroe>
+}
+
+' Jerarquía de Creadores (Factory Method - Izquierda)
+abstract class CreadorHeroe <<Creator>> {
+    + {abstract} crearHeroe(datos: DatosCreacionHeroe): Heroe
+}
+
+class CreadorGuerrero <<ConcreteCreator>> {
+    + crearHeroe(datos: DatosCreacionHeroe): Heroe
+}
+
+class CreadorMago <<ConcreteCreator>> {
+    + crearHeroe(datos: DatosCreacionHeroe): Heroe
+}
+
+' Jerarquía de Productos (Factory Method - Derecha)
+abstract class Heroe <<Product>> {
+    - nombre: String
+    - apodo: String
+    - fechaCreacion: LocalDate
+    + Heroe(nombre: String, apodo: String, fechaCreacion: LocalDate)
+    + getNombre(): String
+    + getApodo(): String
+    + getFechaCreacion(): LocalDate
+    + {abstract} calcularPoderTotal(): double
+    + {abstract} getDescripcionTipo(): String
+}
+
+class GuerreroHeroe <<ConcreteProduct>> {
+    - poderAtaque: double
+    - victorias: int
+    - bonoPorVictoria: double
+    + calcularPoderTotal(): double
+    + getDescripcionTipo(): String
+}
+
+class MagoHeroe <<ConcreteProduct>> {
+    - reservaMana: double
+    + calcularPoderTotal(): double
+    + getDescripcionTipo(): String
+}
+
+' Relaciones del Singleton / Facade con los Creadores y los Héroes
+GestorCentralHeroes o--> "1\n-creadorGuerrero" CreadorHeroe
+GestorCentralHeroes o--> "1\n-creadorMago" CreadorHeroe
+GestorCentralHeroes o--> "*\n-heroesRegistrados" Heroe
+
+' Herencia de Creadores
+CreadorHeroe <|-- CreadorGuerrero
+CreadorHeroe <|-- CreadorMago
+
+' Herencia de Productos
+Heroe <|-- GuerreroHeroe
+Heroe <|-- MagoHeroe
+
+' Dependencia de Creación del Factory Method
+CreadorGuerrero ..> GuerreroHeroe : crea
+CreadorMago ..> MagoHeroe : crea
+
+' Alineaciones estéticas
+CreadorGuerrero -[hidden]right- CreadorMago
+GuerreroHeroe -[hidden]right- MagoHeroe
+
+@enduml
