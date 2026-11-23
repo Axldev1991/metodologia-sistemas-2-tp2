@@ -52,8 +52,8 @@ class TransferenciaStrategy <<ConcreteStrategy>> {
     + ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria): void
 }
 
-' Conexión Contexto -> Strategy (Horizontal como en la filmina de la cátedra)
-GestorTransacciones -right-> "1\n-estrategia" TransaccionStrategy
+' Conexión Contexto -> Strategy (Agregación horizontal como en la filmina de la cátedra)
+GestorTransacciones o-right-> "1\n-estrategia" TransaccionStrategy
 
 ' Conexión Contexto -> Cuentas de Dominio (Hacia abajo en la columna izquierda)
 GestorTransacciones -down-> "1\n-cuentaOrigen" CuentaBancaria

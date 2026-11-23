@@ -59,9 +59,9 @@ class RegistroConsola <<ConcreteObserver>> {
     + getLogs(): List<String>
 }
 
-' Relación Sujeto -> Observadores
+' Relación Sujeto -> Observadores y Dependencia
 Sensor o--> "*\n-observadores" ObservadorSensor
-Sensor ..> Medicion : crea / emite
+Sensor ..> Medicion
 
 ' Realizaciones de los observadores concretos
 ObservadorSensor <|.. PanelPrincipal
