@@ -72,12 +72,12 @@ classDiagram
         +isUltimoPagoExitoso(): boolean
     }
 
-    Reserva --> "1\n-huesped" Huesped
-    Reserva --> "1" MedioPago : usa
+    Reserva --> "1" Huesped : -huesped
+    Reserva --> "1" MedioPago
     MedioPago <|.. TarjetaCreditoAdapter
     MedioPago <|.. BilleteraVirtualAdapter
-    TarjetaCreditoAdapter o--> "1\n-tarjetaCredito" TarjetaCredito
-    BilleteraVirtualAdapter o--> "1\n-billeteraVirtual" BilleteraVirtual
+    TarjetaCreditoAdapter o--> "1" TarjetaCredito : -tarjetaCredito
+    BilleteraVirtualAdapter o--> "1" BilleteraVirtual : -billeteraVirtual
 ```
 
 ---

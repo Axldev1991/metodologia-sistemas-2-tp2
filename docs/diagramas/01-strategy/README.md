@@ -66,9 +66,9 @@ classDiagram
         +ejecutar(monto: BigDecimal, cuentaOrigen: CuentaBancaria, cuentaDestino: CuentaBancaria) void
     }
 
-    GestorTransacciones -right-> "1\n-estrategia" TransaccionStrategy
-    GestorTransacciones -down-> "1\n-cuentaOrigen" CuentaBancaria
-    GestorTransacciones -down-> "0..1\n-cuentaDestino" CuentaBancaria
+    GestorTransacciones o--> "1" TransaccionStrategy : -estrategia
+    GestorTransacciones --> "1" CuentaBancaria : -cuentaOrigen
+    GestorTransacciones --> "0..1" CuentaBancaria : -cuentaDestino
     TransaccionStrategy <|.. DepositoStrategy
     TransaccionStrategy <|.. ExtraccionStrategy
     TransaccionStrategy <|.. TransferenciaStrategy

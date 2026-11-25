@@ -73,7 +73,7 @@ classDiagram
         +getLogs(): List~String~
     }
 
-    Sensor o--> "*\n-observadores" ObservadorSensor
+    Sensor o--> "*" ObservadorSensor : -observadores
     Sensor ..> Medicion
     ObservadorSensor <|.. PanelPrincipal
     ObservadorSensor <|.. PanelAlertas

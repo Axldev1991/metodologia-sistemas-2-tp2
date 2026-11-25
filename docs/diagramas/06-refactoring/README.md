@@ -49,7 +49,7 @@ classDiagram
     }
 
     Videojuego o--> "*" Personaje
-    Personaje --> "1\n-tipoHabilidad" Habilidad
+    Personaje --> "1" Habilidad : -tipoHabilidad
     Habilidad <|.. HabilidadMagica
     Habilidad <|.. HabilidadCuerpoACuerpo
 ```
