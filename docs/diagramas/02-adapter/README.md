@@ -73,7 +73,7 @@ classDiagram
     }
 
     Reserva --> "1" Huesped : -huesped
-    Reserva --> "1" MedioPago
+    Reserva ..> MedioPago
     MedioPago <|.. TarjetaCreditoAdapter
     MedioPago <|.. BilleteraVirtualAdapter
     TarjetaCreditoAdapter o--> "1" TarjetaCredito : -tarjetaCredito

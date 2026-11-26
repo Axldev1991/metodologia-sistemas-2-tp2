@@ -88,13 +88,14 @@ classDiagram
         +calcularPoderTotal() double
     }
 
-    GestorCentralHeroes o--> "1" CreadorHeroe
-    GestorCentralHeroes o--> "*" Heroe
+    GestorCentralHeroes --> "1" CreadorHeroe : -creadorGuerrero
+    GestorCentralHeroes --> "1" CreadorHeroe : -creadorMago
+    GestorCentralHeroes --> "*" Heroe : -heroesRegistrados
     CreadorHeroe <|-- CreadorGuerrero
     CreadorHeroe <|-- CreadorMago
     Heroe <|-- GuerreroHeroe
     Heroe <|-- MagoHeroe
-    CreadorGuerrero ..> GuerreroHeroe : crea
-    CreadorMago ..> MagoHeroe : crea
+    CreadorGuerrero ..> GuerreroHeroe
+    CreadorMago ..> MagoHeroe
 ```
 
