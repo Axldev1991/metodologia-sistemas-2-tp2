@@ -10,6 +10,8 @@
 * **Docente:** Lic. Edith Rocío Castillo Yauri
 * **Fecha de Entrega:** Jueves 26/11 - 12:30 hs
 * **Repositorio:** [metodologia-sistemas-2-tp2](https://github.com/Axldev1991/metodologia-sistemas-2-tp2)
+* **Entrega Formal (PDF):** [entrega/Grupo5_C141TP2.pdf](entrega/Grupo5_C141TP2.pdf)
+* **Dossier HTML:** [entrega/Grupo5_C141TP2.html](entrega/Grupo5_C141TP2.html)
 
 ### **Integrantes del Grupo 5**
 * Castellano, Axel ([@Axldev1991](https://github.com/Axldev1991))
@@ -57,23 +59,27 @@ parcial-2/
 
 ---
 
-## Contenido a Desarrollar
+## Índice Navegable por Punto del TP
 
-1. **Patrones de Diseño:**
-   - **Strategy:** Sistema de transacciones bancarias (depósito, extracción, transferencia) intercambiables antes de confirmar.
-   - **Adapter:** Pagos en hotel con `TarjetaCredito` y `BilleteraVirtual` sin modificar clases existentes.
-   - **Template Method:** Proceso de preparación y combate para `Guerrero` y `Mago` con hook e inversión de control.
-   - **Observer:** Sensores ambientales en tiempo real notificando a paneles gráficos y consola dinámicamente.
-   - **Factory Method + Singleton + Facade:** Creación desacoplada de héroes, instancia única de gestor e interfaz unificada para los gremios.
+### Parte 1 — Patrones de Diseño (GoF)
 
-2. **Refactoring:**
-   - Análisis de *bad smells* según Martin Fowler sobre la clase `Videojuego`.
-   - Justificación de problemas de mantenibilidad/escalabilidad.
-   - Aplicación de refactorización orientada a objetos (reemplazo de condicionales de tipo por polimorfismo).
+| Punto | Tema / Patrón | Diagrama UML y Análisis | Código Fuente | Tests JUnit |
+| :--- | :--- | :--- | :--- | :--- |
+| **Punto 1** | **Strategy** — Transacciones bancarias | [README](docs/diagramas/01-strategy/README.md) · [PUML](docs/diagramas/01-strategy/diagrama_strategy.puml) · [PNG](entrega/img/01-strategy.png) | [patrones/strategy](src/main/java/ar/edu/utn/fra/metodologia2/patrones/strategy) | [GestorTransaccionesTest.java](src/test/java/ar/edu/utn/fra/metodologia2/patrones/strategy/GestorTransaccionesTest.java) |
+| **Punto 2** | **Adapter** — Pagos de reservas de hotel | [README](docs/diagramas/02-adapter/README.md) · [PUML](docs/diagramas/02-adapter/diagrama_adapter.puml) · [PNG](entrega/img/02-adapter.png) | [patrones/adapter](src/main/java/ar/edu/utn/fra/metodologia2/patrones/adapter) | [ReservaPagoAdapterTest.java](src/test/java/ar/edu/utn/fra/metodologia2/patrones/adapter/ReservaPagoAdapterTest.java) |
+| **Punto 3** | **Template Method** — Combate en videojuego | [README](docs/diagramas/03-template-method/README.md) · [PUML](docs/diagramas/03-template-method/diagrama_template_method.puml) · [PNG](entrega/img/03-template-method.png) · [Respuestas](docs/respuestas-teoricas/03-template-method-respuestas.md) | [patrones/templatemethod](src/main/java/ar/edu/utn/fra/metodologia2/patrones/templatemethod) | [PersonajeTemplateMethodTest.java](src/test/java/ar/edu/utn/fra/metodologia2/patrones/templatemethod/PersonajeTemplateMethodTest.java) |
+| **Punto 4** | **Observer** — Monitoreo ambiental | [README](docs/diagramas/04-observer/README.md) · [PUML](docs/diagramas/04-observer/diagrama_observer.puml) · [PNG](entrega/img/04-observer.png) | [patrones/observer](src/main/java/ar/edu/utn/fra/metodologia2/patrones/observer) | [SistemaMonitoreoObserverTest.java](src/test/java/ar/edu/utn/fra/metodologia2/patrones/observer/SistemaMonitoreoObserverTest.java) |
+| **Punto 5** | **Factory Method + Singleton + Facade** — Gremios y héroes | [README](docs/diagramas/05-heroes-factory-singleton-facade/README.md) · [PUML](docs/diagramas/05-heroes-factory-singleton-facade/diagrama_heroes.puml) · [PNG](entrega/img/05-heroes.png) | [patrones/heroes](src/main/java/ar/edu/utn/fra/metodologia2/patrones/heroes) | [GestorHeroesTest.java](src/test/java/ar/edu/utn/fra/metodologia2/patrones/heroes/GestorHeroesTest.java) |
 
-3. **Domain-Driven Design (DDD):**
-   - Lenguaje ubicuo.
-   - Entidad vs. Objeto de Valor (Value Object).
-   - Bounded Context y manejo de complejidad.
-   - Aporte de diagramas UML al modelo de dominio.
+### Parte 2 — Refactoring (Martin Fowler)
+
+| Sección | Tema | Análisis y Diagrama UML | Código Original | Código Refactorizado | Tests JUnit |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Refactoring** | *Replace Conditional with Polymorphism* (`Videojuego`) | [Análisis teórico](docs/respuestas-teoricas/06-refactoring-analisis.md) · [README](docs/diagramas/06-refactoring/README.md) · [PUML](docs/diagramas/06-refactoring/diagrama_refactoring.puml) · [PNG](entrega/img/06-refactoring.png) | [VideojuegoOriginal.java](src/main/java/ar/edu/utn/fra/metodologia2/refactoring/original/VideojuegoOriginal.java) | [refactoring/refactored](src/main/java/ar/edu/utn/fra/metodologia2/refactoring/refactored) | [VideojuegoRefactoredTest.java](src/test/java/ar/edu/utn/fra/metodologia2/refactoring/VideojuegoRefactoredTest.java) |
+
+### Parte 3 — Domain-Driven Design (DDD)
+
+| Sección | Temas Cubiertos | Documento |
+| :--- | :--- | :--- |
+| **DDD** | Lenguaje Ubicuo, Entidad vs. Value Object, Bounded Context y rol de UML | [07-ddd-respuestas.md](docs/respuestas-teoricas/07-ddd-respuestas.md) |
 
